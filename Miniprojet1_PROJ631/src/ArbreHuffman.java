@@ -6,13 +6,13 @@ public class ArbreHuffman {
 	
 	//Attributs
 
-	//private ArrayList< ArbreBinaire>listeEnsembleNoeud;
+	private ArrayList< ArbreBinaire>listeEnsembleNoeud;
 	private ArrayList< ArbreBinaire>listetempoNoeud;
 	private int pMax;
 	
 	//Constructeur
 	public ArbreHuffman(ArrayList<ArbreBinaire> listeNoeud) {
-		//this.listeEnsembleNoeud=new ArrayList<ArbreBinaire>();
+		this.listeEnsembleNoeud=new ArrayList<ArbreBinaire>();
 		this.listetempoNoeud=new ArrayList<ArbreBinaire>();
 		this.setListetempoNoeud(listeNoeud);
 		this.pMax=this.calculePMax();
@@ -23,13 +23,13 @@ public class ArbreHuffman {
 	}
 	
 	//Methode
-	/*public ArrayList<ArbreBinaire> getListeEnsembleNoeud() {
+	public ArrayList<ArbreBinaire> getListeEnsembleNoeud() {
 		return this.listeEnsembleNoeud;
 	}
 
 	public void setListeEnsembleNoeud(ArrayList<ArbreBinaire> listeEnsembleNoeud) {
 		this.listeEnsembleNoeud = listeEnsembleNoeud;
-	}*/
+	}
 
 	public ArrayList<ArbreBinaire> getListetempoNoeud() {
 		return this.listetempoNoeud;
@@ -61,21 +61,17 @@ public class ArbreHuffman {
 		this.setListetempoNoeud(nl);
     } 
 	
+	
 	public int calculePMax() {
 		int somme=0;
-		//System.out.println("oui");
-		//System.out.println("taille de listetempo "+ this.listetempoNoeud.size());
 		for(int k=0;k<this.listetempoNoeud.size();k++) {
 			somme=somme+this.listetempoNoeud.get(k).getEtiquette();
-			//System.out.println(this.getListetempoNoeud());
 		}
-		//System.out.println("cest la somme "+somme);
 		return somme;
 	}
 	
 	public void creationArbreComplet() {
-		//System.out.println(this.getListetempoNoeud().size());
-		//System.out.println(this.getListetempoNoeud());
+		//Fonction qui permet la creation de l'arbre du huffman par recurrence 
 		// il faut définir une condition d'arrêt qui fonctionne peut importe ce que tu as. Le tout dernier élément est à prendre en compte
 		 if (this.listetempoNoeud.size()>1 && this.listetempoNoeud.get(0).getEtiquette()<=this.pMax) {
 			 //le prendre le poids le plus faible de la liste : créer un objet temporaire qui permet de le stocker
@@ -97,16 +93,30 @@ public class ArbreHuffman {
 			 //je trie la liste 
 		     this.trieList(listetempoNoeud);
 			 //j'appelle de nveau la fonction creationArbreComplet
-		     System.out.println(this.getListetempoNoeud());
-		     for(int k=0;k<this.listetempoNoeud.size();k++) {
-		    	 System.out.println(this.getListetempoNoeud().get(k).getEtiquette()+" "+this.getListetempoNoeud().get(k).getNoeudG()+" "+this.getListetempoNoeud().get(k).getNoeudD());
-		    	
-		     }
+		     //System.out.println(this.getListetempoNoeud());
+		     
+		     /*for(int k=0;k<this.listetempoNoeud.size();k++) {
+		    	 System.out.println("interation de la boucle "+k);
+		    	 System.out.println(this.getListetempoNoeud().get(k).getEtiquette());
+		    	 System.out.println("noueud gauche");
+		    	 this.getListetempoNoeud().get(k).etiquetteenfantG();
+		    	 System.out.println("noeud droit");
+		    	 this.getListetempoNoeud().get(k).etiquetteenfantD();
+		     }*/
 		     this.creationArbreComplet();
 		    
 		 }
 		 
-		 //affichage de la liste complete pour verification 
-		 
 	}
+	
+	
+	public void chiffrement() {
+		
+	}
+	
+	
+	
+	
+	
+	
 }

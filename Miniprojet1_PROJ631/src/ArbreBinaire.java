@@ -74,7 +74,18 @@ public class ArbreBinaire {
 	public String getLettreAssocier() {
 		return lettreAssocier;
 	}
-
+	
+	public void etiquetteenfantG() {
+		if (this.noeudG!=null) {
+			System.out.println(this.noeudG.getEtiquette());
+		}
+		
+	}
+	public void etiquetteenfantD() {
+		if (this.noeudD!=null) {
+			System.out.println(this.noeudD.getEtiquette());
+		}
+	}
 
 	public void setLettreAssocier(String lettreAssocier) {
 		this.lettreAssocier = lettreAssocier;
