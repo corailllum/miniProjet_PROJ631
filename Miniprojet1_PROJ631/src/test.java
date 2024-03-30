@@ -24,6 +24,10 @@ public class test {
 		ArbreHuffman arb=new ArbreHuffman(listeNoeud);
 		
 		arb.creationArbreComplet();
+		
+		arb.chiffrement(arb.getListetempoNoeud().get(0), arb.getListechiffrement(), arb.getListeLettrechiffree(), "");
+		System.out.println(arb.getListeLettrechiffree());
+		System.out.println(arb.getListechiffrement());
 	}
 }
 // les licornes sont des creatures magnifiques !

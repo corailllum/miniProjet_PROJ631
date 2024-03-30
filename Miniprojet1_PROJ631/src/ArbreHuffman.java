@@ -6,16 +6,20 @@ public class ArbreHuffman {
 	
 	//Attributs
 
-	private ArrayList< ArbreBinaire>listeEnsembleNoeud;
+	private ArrayList< String>listeLettrechiffree;
+	private ArrayList< String>listechiffrement;
 	private ArrayList< ArbreBinaire>listetempoNoeud;
 	private int pMax;
+	private String code;
 	
 	//Constructeur
 	public ArbreHuffman(ArrayList<ArbreBinaire> listeNoeud) {
-		this.listeEnsembleNoeud=new ArrayList<ArbreBinaire>();
+		this.listeLettrechiffree=new ArrayList<String>();
+		this.listechiffrement=new ArrayList<String>();
 		this.listetempoNoeud=new ArrayList<ArbreBinaire>();
 		this.setListetempoNoeud(listeNoeud);
 		this.pMax=this.calculePMax();
+		
 		
 		System.out.println("non");
 		System.out.println("taille de listetempo "+ this.listetempoNoeud.size());
@@ -23,12 +27,12 @@ public class ArbreHuffman {
 	}
 	
 	//Methode
-	public ArrayList<ArbreBinaire> getListeEnsembleNoeud() {
-		return this.listeEnsembleNoeud;
+	public ArrayList<String> getListeLettrechiffree() {
+		return this.listeLettrechiffree;
 	}
 
-	public void setListeEnsembleNoeud(ArrayList<ArbreBinaire> listeEnsembleNoeud) {
-		this.listeEnsembleNoeud = listeEnsembleNoeud;
+	public void setListeLettrechiffree(ArrayList<String> listeEnsembleNoeud) {
+		this.listeLettrechiffree = listeEnsembleNoeud;
 	}
 
 	public ArrayList<ArbreBinaire> getListetempoNoeud() {
@@ -39,6 +43,29 @@ public class ArbreHuffman {
 		this.listetempoNoeud = listetempoNoeud;
 	}
 	
+	public ArrayList<String> getListechiffrement() {
+		return listechiffrement;
+	}
+
+	public void setListechiffrement(ArrayList<String> listechiffrement) {
+		this.listechiffrement = listechiffrement;
+	}
+
+	public int getpMax() {
+		return pMax;
+	}
+
+	public void setpMax(int pMax) {
+		this.pMax = pMax;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 	
 	
@@ -84,12 +111,9 @@ public class ArbreHuffman {
 		     
 		     ArbreBinaire nouvelArbre = new ArbreBinaire(valeur, arbreG, arbreD);
 		     this.listetempoNoeud.add(nouvelArbre);
-		     //System.out.println(this.getListetempoNoeud());
 			 //je supprime les deux noeuds utilisés
 		     this.listetempoNoeud.remove(this.listetempoNoeud.get(0));
-		     //System.out.println(this.getListetempoNoeud());
 		     this.listetempoNoeud.remove(this.listetempoNoeud.get(0));
-		     //System.out.println(this.getListetempoNoeud());
 			 //je trie la liste 
 		     this.trieList(listetempoNoeud);
 			 //j'appelle de nveau la fonction creationArbreComplet
@@ -110,9 +134,26 @@ public class ArbreHuffman {
 	}
 	
 	
-	public void chiffrement() {
-		
+	//premiere iteration mettre this.arbre ; this.listechiffrement en paramettre
+	public void chiffrement(ArbreBinaire arbre,ArrayList<String> listechiffrement,ArrayList<String>listeLettrechiffrement,String code) {
+		if(arbre.getLettreAssocier()!=null) {
+			listeLettrechiffrement.add(arbre.getLettreAssocier());
+			listechiffrement.add(code);
+		}
+		else {
+			this.chiffrement(arbre.getNoeudG(),listechiffrement,listeLettrechiffrement,code+"0");
+			this.chiffrement(arbre.getNoeudD(),listechiffrement,listeLettrechiffrement,code+"1");
+		}
 	}
+		/*def codeBinaire(arbre, dico, code=""):
+			if arbre.estFeuille() :
+			dico[arbre.getCaractere()] = code
+			else :
+			codeBinaire(arbre.getGauche(), dico, code + "0")
+			codeBinaire(arbre.getDroite(), dico, code + "1")
+			codes = {}
+			codeBinaire(arbreHuffman,codes)*/
+
 	
 	
 	
