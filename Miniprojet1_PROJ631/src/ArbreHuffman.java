@@ -11,6 +11,7 @@ public class ArbreHuffman {
 	private ArrayList< ArbreBinaire>listetempoNoeud;
 	private int pMax;
 	private String code;
+	private String textechiffree;
 	
 	//Constructeur
 	public ArbreHuffman(ArrayList<ArbreBinaire> listeNoeud) {
@@ -19,6 +20,7 @@ public class ArbreHuffman {
 		this.listetempoNoeud=new ArrayList<ArbreBinaire>();
 		this.setListetempoNoeud(listeNoeud);
 		this.pMax=this.calculePMax();
+		this.textechiffree="";
 		
 		
 		System.out.println("non");
@@ -117,16 +119,7 @@ public class ArbreHuffman {
 			 //je trie la liste 
 		     this.trieList(listetempoNoeud);
 			 //j'appelle de nveau la fonction creationArbreComplet
-		     //System.out.println(this.getListetempoNoeud());
 		     
-		     /*for(int k=0;k<this.listetempoNoeud.size();k++) {
-		    	 System.out.println("interation de la boucle "+k);
-		    	 System.out.println(this.getListetempoNoeud().get(k).getEtiquette());
-		    	 System.out.println("noueud gauche");
-		    	 this.getListetempoNoeud().get(k).etiquetteenfantG();
-		    	 System.out.println("noeud droit");
-		    	 this.getListetempoNoeud().get(k).etiquetteenfantD();
-		     }*/
 		     this.creationArbreComplet();
 		    
 		 }
@@ -134,8 +127,10 @@ public class ArbreHuffman {
 	}
 	
 	
-	//premiere iteration mettre this.arbre ; this.listechiffrement en paramettre
+	
 	public void chiffrement(ArbreBinaire arbre,ArrayList<String> listechiffrement,ArrayList<String>listeLettrechiffrement,String code) {
+		//fonction par recurrence qui permet de parcourir l'arbre et de trouvée les codes des different caractere
+		//code trouver sur interent en python et radapter a la situation site :
 		if(arbre.getLettreAssocier()!=null) {
 			listeLettrechiffrement.add(arbre.getLettreAssocier());
 			listechiffrement.add(code);
@@ -145,16 +140,52 @@ public class ArbreHuffman {
 			this.chiffrement(arbre.getNoeudD(),listechiffrement,listeLettrechiffrement,code+"1");
 		}
 	}
-		/*def codeBinaire(arbre, dico, code=""):
-			if arbre.estFeuille() :
-			dico[arbre.getCaractere()] = code
-			else :
-			codeBinaire(arbre.getGauche(), dico, code + "0")
-			codeBinaire(arbre.getDroite(), dico, code + "1")
-			codes = {}
-			codeBinaire(arbreHuffman,codes)*/
-
+		
 	
+	public void codageDuTexte(Texte texte){
+		//fonction qui récup le nouvelle alphabet crée par l'arbre pour recrée le texte avec les codes binaires  
+		String textFinal="";
+		for (int i=0 ;i<texte.getTableauTexteNormal().size();i++) {
+			for (int k=0;k<this.listeLettrechiffree.size();k++) {
+				if(texte.getTableauTexteNormal().get(i)==this.listeLettrechiffree.get(k)) {
+					textFinal+=this.listechiffrement.get(k);
+				}
+			}
+		}
+		
+		this.textechiffree= textFinal;
+	}
+	
+	public String getTextechiffree() {
+		return textechiffree;
+	}
+
+	public void setTextechiffree(String textechiffree) {
+		this.textechiffree = textechiffree;
+	}
+
+	public double calculeGainFinal(Texte texte) {
+		//fonction qui calcule le gain qui est fais au niveau de la place apres codage
+		
+		double volumeini=texte.getNbCaractere()*8;
+		System.out.println(volumeini);
+		double volumef=this.textechiffree.length();
+		System.out.println(volumef);
+		double gain=1-(volumef/volumeini);
+		return gain;
+	}
+	
+	public double calculeTauxCompressionMoyen() {
+		double taux=1.0;
+		double res=0;
+		for(int i=0;i<this.listechiffrement.size();i++) {
+			res+=this.listechiffrement.get(i).length();
+		}
+		taux=res/this.listechiffrement.size();
+		
+		return taux;
+	}
+
 	
 	
 	

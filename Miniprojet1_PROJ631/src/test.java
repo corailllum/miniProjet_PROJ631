@@ -12,6 +12,7 @@ public class test {
 		System.out.println(mot.getTabIterationHuffman());
 		
 		
+		
 		ArrayList<ArbreBinaire> listeNoeud=new ArrayList<ArbreBinaire>();
 		for (int i=0; i<mot.getTabIterationHuffman().size();i++) {
 			listeNoeud.add(new ArbreBinaire(mot.getTabIterationHuffman().get(i)));
@@ -28,6 +29,10 @@ public class test {
 		arb.chiffrement(arb.getListetempoNoeud().get(0), arb.getListechiffrement(), arb.getListeLettrechiffree(), "");
 		System.out.println(arb.getListeLettrechiffree());
 		System.out.println(arb.getListechiffrement());
+		arb.codageDuTexte(mot);
+		System.out.println(arb.getTextechiffree());
+		System.out.println(arb.calculeGainFinal(mot));
+		System.out.println(arb.calculeTauxCompressionMoyen());
 	}
 }
 // les licornes sont des creatures magnifiques !

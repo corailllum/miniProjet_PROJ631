@@ -5,8 +5,10 @@ public class Texte {
 	private String texts;
 	private int nbCaractere;
 	private ArrayList<String> tableauTexteNormal;
+	
 	private ArrayList<String> tabDeCaractere;
 	private ArrayList<Integer> tabNbIteration;
+	
 	private ArrayList<String> tabChararctereHuffman;
 	private ArrayList<Integer> tabIterationHuffman;
 	
@@ -146,7 +148,6 @@ public class Texte {
 	}
 
 	
-
 }
 
 	
